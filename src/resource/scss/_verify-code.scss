@@ -1,0 +1,60 @@
+.verify__container {
+  background-color: var(--first-color);
+  max-width: 500px;
+  position: absolute;
+  top: 25%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.verify__header {
+  color: var(--text-color);
+  font-size: 32px;
+}
+
+.verify__description {
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.count-down {
+  color: var(--error-color);
+  display: inline-block;
+}
+
+.verify__input {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+}
+
+.input-code {
+  width: 10%;
+  height: 100%;
+  border: 1px solid var(--border-color);
+  padding: 8px 0;
+  margin: 0 4px;
+  text-align: center;
+}
+
+.verify__btn {
+  padding: 8px 0;
+}
+
+.verify__btn .btn:hover {
+  opacity: 0.5;
+}
+
+.verify__btn .btn-confirm {
+  background-color: var(--success-color);
+  margin-right: 8px;
+  color: var(--white-color);
+}
+
+.verify__btn .btn-resend {
+  background-color: var(--error-color);
+  color: var(--white-color);
+}

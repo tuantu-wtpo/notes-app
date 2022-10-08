@@ -1,0 +1,138 @@
+<div class="wrapper app-bg d-flex align-items-center justify-content-center">
+  <div class="row g-0 user-container">
+    <div class="col-sm-4 gradient-custom text-center text-white">
+      <a href="/notes" class="btn-backward"><i class="fa-solid fa-arrow-left"></i></a>
+      <div class="avatar-part">
+        <div class="avatar-part-image">
+          <img src={{user.imgUrl}} alt="Avatar" class="img-fluid mt-5 mb-4 user-avatar-img" />
+        </div>
+        <div class="user-avatar-options">
+          <li class="user-avatar-item">
+            <a href={{user.imgUrl}} target="blank" class="">See avatar</a>
+          </li>
+          <li class="user-avatar-item change-avatar">Change avatar</li>
+        </div>
+        <input type="file" name="imageFile" accept="image/*" id="imageFile" class="d-none" />
+        <div class="avatar-modifier mb-2">
+          <div class="btn btn-avatar-cancel">Cancel</div>
+          <div class="btn btn-avatar-confirm">Confirm</div>
+        </div>
+      </div>
+      <h5 class="infor-title text-break">{{user.userName}}</h5>
+      <input type="text" class="infor-modifier username-input" value="{{user.userName}}" name="userName" />
+      <p>{{user.permission}}</p>
+      <i class="far mb-5 fa-edit btn-modifier-infor"></i>
+      <div class="confirm-modifier mb-4">
+        <div class="btn btn-cancel">Cancel</div>
+        <div class="btn btn-confirm">Confirm</div>
+      </div>
+    </div>
+    <div class="col-sm-8 card-body">
+      <h6>Information</h6>
+      <hr class="mt-0 mb-4" />
+      <div class="row pt-1 mb-3">
+        <div class="col-6">
+          <h6>Email</h6>
+          <p class="text-muted infor-title text-break">{{{checkInfor "email" user.email}}}</p>
+          <input type="text" class="infor-modifier" value="{{user.email}}" name="email" />
+          <i class="far mb-3 fa-edit btn-modifier-infor"></i>
+          <div class="confirm-modifier mt-2">
+            <div class="btn btn-cancel">Cancel</div>
+            <div class="btn btn-confirm">Confirm</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <h6>Phone</h6>
+          <p class="text-muted infor-title text-break">{{{checkInfor "phone" user.phone}}}</p>
+          <input type="text" class="infor-modifier" value="{{user.phone}}" name="phone" />
+          <i class="far mb-3 fa-edit btn-modifier-infor"></i>
+          <div class="confirm-modifier mt-2">
+            <div class="btn btn-cancel">Cancel</div>
+            <div class="btn btn-confirm">Confirm</div>
+          </div>
+        </div>
+        {{{showWElement user "warning"}}}
+      </div>
+      <h6>Notes</h6>
+      <hr class="mt-0 mb-4" />
+      <div class="row pt-1">
+        <div class="col-4 mb-3">
+          <h6>All</h6>
+          <p class="text-muted">{{{allNote}}} notes</p>
+        </div>
+        <div class="col-4 mb-3">
+          <h6>Active</h6>
+          <p class="text-muted">{{{activeNote}}} notes</p>
+        </div>
+        <div class="col-4 mb-3">
+          <h6>Completed</h6>
+          <p class="text-muted">{{{completedNote}}} notes</p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center mx-2">
+          {{{linkSocial user "facebook"}}}
+          {{{linkSocial user "twitter"}}}
+          {{{linkSocial user "instagram"}}}
+        </div>
+        <div class="change-password d-flex justify-content-center align-items-center">
+          {{{showWElement user ""}}}
+          <div class="change-password__form">
+            <div class="mb-2 position-relative">
+              <input
+                type="password"
+                class="change-password__input {{user.provider}} py-1 px-2"
+                name="oldPass"
+                placeholder="Enter old password"
+              />
+              <div class="icon-state">
+                <i class="fa-regular fa-eye-slash icon-show-pass active"></i>
+                <i class="fa-regular fa-eye icon-hide-pass"></i>
+              </div>
+            </div>
+            <div class="mb-2 position-relative">
+              <input
+                type="password"
+                class="change-password__input py-1 px-2"
+                name="newPass"
+                placeholder="Enter new password"
+              />
+              <div class="icon-state">
+                <i class="fa-regular fa-eye-slash icon-show-pass active"></i>
+                <i class="fa-regular fa-eye icon-hide-pass"></i>
+              </div>
+            </div>
+            <div class="mb-2 position-relative">
+              <input
+                type="password"
+                class="change-password__input py-1 px-2"
+                name="confirmNewPass"
+                placeholder="Confirm new password"
+              />
+              <div class="icon-state">
+                <i class="fa-regular fa-eye-slash icon-show-pass active"></i>
+                <i class="fa-regular fa-eye icon-hide-pass"></i>
+              </div>
+            </div>
+            <div class="mt-2 text-center">
+              <div class="btn btn-cancel">Cancel</div>
+              <div class="btn btn-confirm">Confirm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="load-animate">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="spinner-triple">
+        <div class="spinner-triple">
+          <div class="spinner-triple"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/JS/user.js"></script>
+</div>

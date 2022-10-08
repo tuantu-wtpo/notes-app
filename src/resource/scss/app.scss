@@ -1,0 +1,254 @@
+@import 'variables';
+@import 'background';
+@import 'home';
+@import 'authenticate';
+@import 'user';
+@import 'verify-code';
+@import 'notes';
+@import 'loadingAnimate';
+
+.show-notify {
+  position: fixed;
+  right: 32px;
+  top: 32px;
+  z-index: 99;
+}
+
+.show-notify__container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  min-width: 400px;
+  max-width: 450px;
+  border-left: 6px solid;
+  border-radius: 2px;
+  will-change: opacity, transform;
+  animation: fadeInleft 0.3s linear, fadeOut 1s 3s linear forwards;
+}
+
+.show-notify__container ~ .show-notify__container {
+  margin-top: 12px;
+}
+
+.show-notify__container.notify-success {
+  border-color: var(--success-color);
+}
+
+.show-notify__container.notify-error {
+  border-color: var(--error-color);
+}
+
+.show-notify__icon {
+  font-size: 20px;
+  padding: 0 12px;
+}
+
+.show-notify__container.notify-success .show-notify__icon {
+  color: var(--success-color);
+}
+
+.show-notify__container.notify-error .show-notify__icon {
+  color: var(--error-color);
+}
+
+.show-notify__body {
+  flex: 1;
+}
+
+.show-notify__title {
+  color: var(--success-color);
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 4px 0;
+}
+
+.show-notify__container.notify-success .show-notify__title {
+  color: var(--success-color);
+}
+
+.show-notify__container.notify-error .show-notify__title {
+  color: var(--error-color);
+}
+
+.show-notify__message {
+  color: #333;
+  font-size: 14px;
+  padding-bottom: 8px;
+}
+
+.show-notify__close {
+  color: #333;
+  opacity: 0.6;
+  font-size: 24px;
+  padding: 0 12px;
+}
+
+.show-notify__close:hover {
+  cursor: pointer;
+}
+
+.toggle-mode {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.toggle-mode-on {
+  color: var(--second-color);
+  display: none;
+}
+
+@media (max-width: 575px) {
+  .show-notify {
+    min-width: 300px;
+    right: 12px;
+  }
+
+  .app-bg {
+    background-repeat: repeat;
+  }
+
+  .home__header {
+    padding-top: 25%;
+  }
+
+  .home__header span {
+    font-size: 70px;
+    margin: 20px 8px 0;
+  }
+
+  .app-notes {
+    width: 100%;
+    padding: 20px 10px 10px;
+  }
+
+  .notes__header {
+    border: 1px solid var(--second-color);
+  }
+
+  .notes__title {
+    text-align: center;
+  }
+
+  .notes__item,
+  .notes__item i {
+    font-size: 20px;
+  }
+
+  .notes__header input {
+    font-size: 16px;
+  }
+
+  .notes__footer {
+    font-size: 16px;
+  }
+
+  .notes__state {
+    position: relative;
+  }
+
+  .notes__state-select {
+    display: block;
+  }
+
+  .notes__state-list {
+    display: none;
+    border-radius: 2px;
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 1px var(--border-color);
+    background-color: var(--white-color);
+  }
+
+  .notes__state-list li {
+    display: block;
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .notes__state-list li:hover {
+    opacity: 0.7;
+  }
+
+  .notes__state-list button {
+    color: var(--text-color);
+  }
+
+  .notes--all.active,
+  .notes--active.active,
+  .notes--completed.active {
+    color: var(--fifth-color);
+    border: none;
+  }
+
+  .user-container {
+    min-height: 100vh;
+  }
+
+  .avatar-owner {
+    width: 50px;
+    height: 50px;
+  }
+
+  .avatar-owner::before {
+    width: 50px;
+    height: 50px;
+  }
+
+  .avatar-owner::after {
+    inset: 4px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 739px) {
+  .app-notes {
+    width: 80vw;
+  }
+
+  .notes__header {
+    padding: 8px 16px;
+  }
+
+  .notes__item,
+  .notes__item i {
+    font-size: 16px;
+  }
+
+  .home__header span {
+    font-size: 100px;
+    margin: 0 10px;
+  }
+
+  .user-container {
+    max-width: 90vw;
+  }
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+  .app-notes {
+    width: 65vw;
+  }
+
+  .home__header span {
+    font-size: 120px;
+    margin: 0 10px;
+  }
+
+  .user-container {
+    max-width: 90vw;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .app-notes {
+    width: 50vw;
+  }
+}
+
+@media (min-width: 1200px) {
+}

@@ -1,0 +1,247 @@
+.avatar-owner {
+  width: var(--avatar-owner-width);
+  height: var(--avatar-owner-width);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+}
+
+.avatar-owner::before {
+  content: '';
+  width: var(--avatar-owner-width);
+  height: var(--avatar-owner-width);
+  position: absolute;
+  background: var(--primary-color);
+  animation: ani 2s infinite ease-in-out;
+  border-radius: 50%;
+}
+
+.avatar-owner::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background-image: var(--imgUrl);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.app-notes {
+  width: 40vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+}
+
+.notes__title {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--notes-title-color);
+  letter-spacing: 8px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 4px var(--notes-title-color);
+}
+
+.text-notify {
+  font-size: 24px;
+  color: var(--text-color);
+  display: none;
+}
+
+.notes__header {
+  padding: 12px 20px;
+  background-color: var(--first-color);
+  border-radius: 4px;
+}
+
+.notes__header i {
+  font-size: 28px;
+  margin-right: 16px;
+  background: var(--fifth-color);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.notes__header input {
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text-color);
+  background-color: var(--first-color);
+}
+
+.notes__header input::placeholder {
+  color: var(--text-color);
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.btn-add-note {
+  padding: 0 4px;
+  color: var(--text-color);
+  margin-left: 8px;
+  border: 1px solid var(--fifth-color);
+}
+
+.btn-add-note:hover {
+  color: var(--second-color);
+}
+
+.notes__body {
+  background-color: var(--first-color);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.notes__list {
+  list-style: none;
+  padding: 4px 20px;
+  margin-bottom: 0;
+}
+
+.notes__item {
+  position: relative;
+  font-size: 20px;
+  padding: 4px 0;
+  border-bottom: 1px solid #dcd6d6;
+  color: var(--text-color);
+  display: flex;
+  cursor: pointer;
+}
+
+.notes__item i {
+  font-size: 24px;
+  color: var(--text-color);
+  padding-top: 4px;
+}
+
+.notes__icon--checked {
+  display: none;
+}
+
+.notes__item.active .notes__icon--checked {
+  display: inline;
+  background: var(--fifth-color);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.notes__item.active .notes__icon--no-checked {
+  display: none;
+}
+
+.note-name {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.notes__item-text {
+  display: none;
+  text-align: justify;
+  margin-right: 4px;
+}
+
+.notes__item-text.active {
+  display: block;
+}
+
+.notes__item.active .notes__item-text {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.form-update-note {
+  display: none;
+}
+
+.form-update-note input {
+  width: 100%;
+}
+
+.form-update-note.active {
+  display: initial;
+}
+
+.notes__footer {
+  background-color: var(--first-color);
+  font-size: 16px;
+  color: var(--text-color);
+  padding: 16px 20px 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.notes__state {
+  text-align: center;
+  flex: 1;
+}
+
+.notes__state-select {
+  display: none;
+  color: var(--fifth-color);
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.notes__state-list {
+  list-style: none;
+  background-color: var(--first-color);
+  animation: fadeIn 0.5s linear;
+  border-radius: 4px;
+  will-change: opacity, transform;
+  transform-origin: -50% -100%;
+}
+
+.notes__state-list li {
+  display: inline-block;
+  background-color: var(--first-color);
+}
+
+.btn-filter-state {
+  background-color: var(--first-color);
+  color: var(--text-color);
+  border: none;
+  width: 100%;
+}
+
+.notes--all.active,
+.notes--active.active,
+.notes--completed.active {
+  color: var(--fifth-color);
+  border: 1px solid var(--fifth-color);
+}
+
+.btn-clear-notes-completed {
+  display: none;
+}
+
+.btn-clear-notes-completed.active {
+  display: block;
+}
+
+.btn-clear-notes-completed:hover {
+  cursor: pointer;
+  color: var(--second-color);
+}
+
+.btn-logout {
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  color: var(--fifth-color);
+}

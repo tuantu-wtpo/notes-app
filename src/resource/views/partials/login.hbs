@@ -1,0 +1,31 @@
+<div class="wrapper app-bg">
+    <div class="auth-session">
+        <h2 class="auth__header">Login</h2>
+        <div>
+            <div class="mb-3">
+                <label for="username" class="form-label">User name:</label>
+                <input type="text" class="form-control" id="userName" name="userName" placeholder="Type your username">
+            </div>
+            <div class="mb-3 position-relative">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Type your password">
+                <div class="icon-state">
+                    <i class="fa-regular fa-eye-slash icon-show-pass active"></i>
+                    <i class="fa-regular fa-eye icon-hide-pass"></i>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-end my-1">
+                <a href="/forgot-password" class="forget-password">Forget Password?</a>
+            </div>
+            <button type="button" class="btn btn-primary btn-submit mt-2">Login</button>
+        </div>
+        <p class="mt-2 text-center">Or Login with</p>
+        <div class="signup-social text-center">
+            <a href="/login/facebook" class="link-social"><i class="fa-brands fa-facebook"></i></a>
+            <a href="/login/google" class="link-social"><i class="fa-brands fa-google-plus"></i></a>
+            <div style="cursor: pointer;" class="link-social d-inline" onclick="alert('Unfinished features!')"><i class="fa-brands fa-twitter"></i></i></div>
+        </div>
+        <a href="/signup" class="link-toggle mt-3">Don't have an account? <u>Signup now!</u></a>
+    </div>
+    <script src="/JS/authentication.js"></script>
+</div>

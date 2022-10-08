@@ -1,0 +1,54 @@
+<div class="wrapper app-bg">
+    <div class="app-notes">
+        <div class="notes__title">NOTES - {{user.userName}}</div>
+
+        <div class="notes__header d-flex align-items-center">
+            <i class="fa-solid fa-clipboard"></i>
+            <input type="text" name="noteName" id="addNote" placeholder="Add your note" autofocus>
+            <button type="button" class="btn btn-add-note">Add</button>
+        </div>
+
+        <div class="notes__body mt-4">
+            <ul class="notes__list">
+                {{#each notes}}
+                    <li class="notes__item {{{isActive this.completed ../idUser}}} align-items-center">
+                        <div data-id="{{this._id}}" class="d-flex align-items-center update-state-note">
+                            <i class="notes__icon--no-checked fa-regular fa-circle"></i>
+                            <i class="notes__icon--checked fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <div class="note-name">
+                            <span class="notes__item-text active">{{this.name}}</span>
+                            <div data-oldname="{{this.name}}" class="form-update-note">
+                                <input type="text" name="newName" id="updateNote" value="{{this.name}}">
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-delete-notes-item" data-id="{{this._id}}"><i class="fa-solid fa-xmark"></i></button>
+                    </li>
+                {{/each}}
+            </ul>
+            <h1 class="text-notify m-0 px-3 pt-1">You have no notes here!</h1>
+        </div>
+        <div class="notes__footer d-flex align-item-center justify-content-between">
+            <p class="amount-notes">{{countActive}} items left</p>
+            <div class="notes__state notes__state-normal">
+                <div class="notes__state-select">All</div>
+                <div class="notes__state-list">
+                    <li><button data-filter="all" class="btn-filter-state notes--all active">All</button></li>
+                    <li><button data-filter="active" class="btn-filter-state notes--active">Active</button></li>                    
+                    <li><button data-filter="completed" class="btn-filter-state notes--completed">Completed</button></li>
+                </div>
+            </div>
+            <div class="btn-clear-notes-completed {{{isActive countCompleted ''}}}">Clear Completed</div>
+        </div>
+    </div>
+    <a href="/logout" class="btn btn-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+</div>
+
+<a href="/user"><div class="avatar-owner" data-avatarurl={{user.imgUrl}}></div></a>
+
+<script src="https://unpkg.com/css-vars-ponyfill@2/dist/css-vars-ponyfill.min.js"></script>
+<script src="/JS/notes.js"></script>
+
+
