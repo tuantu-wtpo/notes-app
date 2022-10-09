@@ -91,7 +91,8 @@ module.exports = {
       if (req.query.url) return res.redirect(req.query.url);
       return res.redirect("/notes");
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.log("error generate token:", error);
+      res.json({ error: error.message });
     }
   },
 };
