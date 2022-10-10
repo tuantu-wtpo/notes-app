@@ -14,11 +14,11 @@ router.get(
   loginController.showCreateUsername,
   generateToken
 );
-router.get("/facebook", passport.authenticate("facebook_login"));
+router.get("/facebook", passport.authenticate("facebook_login", { scope: ["public_profile", "email"] }));
 router.get(
   "/callback/facebook",
   (req, res, next) => {
-    handleLoginSocial(req, res, next, "facebook_login");
+    handleLoginSocial(req, res, next, "facebook_login", { scope: ["public_profile", "user_link", "email"] });
   },
   loginController.showCreateUsername,
   generateToken
