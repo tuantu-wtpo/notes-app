@@ -126,6 +126,7 @@ passport.use(
       profileFields: ["id", "displayName", "photos", "email", "profileUrl"],
     },
     function (accessToken, refreshToken, profile, done) {
+      console.log(profile);
       const facebookId = profile.id;
       const email = profile._json.email;
       const userQueryByID = User.findOne({ facebookId });
