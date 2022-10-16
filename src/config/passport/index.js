@@ -83,11 +83,11 @@ passport.use(
       clientSecret: GOOGLE_CLIENT_SECRET,
       callbackURL: `${CALLBACK_URL}/login/callback/google`,
     },
-    function (accessToken, refreshToken, profile, done) {
+    async function (accessToken, refreshToken, profile, done) {
       const googleId = profile.id;
       const email = profile._json.email;
-      const userQueryByID = User.findOne({ googleId });
-      const userQueryByEmail = User.findOne({ email });
+      const userQueryByID = await User.findOne({ googleId });
+      const userQueryByEmail = await User.findOne({ email });
       Promise.all([userQueryByID, userQueryByEmail])
         .then(([userByID, userByEmail]) => {
           if (userByID) return done(null, userByID);
@@ -109,6 +109,7 @@ passport.use(
           }
         })
         .catch((err) => {
+          console.log({ err });
           return done(err);
         });
     }
@@ -125,12 +126,12 @@ passport.use(
       callbackURL: `${CALLBACK_URL}/login/callback/facebook`,
       profileFields: ["id", "displayName", "photos", "email", "profileUrl"],
     },
-    function (accessToken, refreshToken, profile, done) {
+    async function (accessToken, refreshToken, profile, done) {
       console.log(profile);
       const facebookId = profile.id;
       const email = profile._json.email;
-      const userQueryByID = User.findOne({ facebookId });
-      const userQueryByEmail = User.findOne({ email });
+      const userQueryByID = await User.findOne({ facebookId });
+      const userQueryByEmail = await User.findOne({ email });
       Promise.all([userQueryByID, userQueryByEmail])
         .then(([userByID, userByEmail]) => {
           if (userByID) return done(null, userByID);
@@ -154,6 +155,7 @@ passport.use(
           }
         })
         .catch((err) => {
+          console.log({ err });
           return done(err);
         });
     }
