@@ -6,7 +6,7 @@ const imgUrl = "https://meovatcuocsong.vn/wp-content/uploads/2019/03/avatar-face
 const Schema = mongoose.Schema;
 
 const User = new Schema({
-  userName: { type: "string", unique: true, require: true },
+  userName: { type: "string", index: true },
   password: { type: "string", require: true },
   googleId: { type: "string", index: true },
   facebookId: { type: "string", index: true },
