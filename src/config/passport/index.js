@@ -103,7 +103,10 @@ passport.use(
             const infor = { googleId, email, imgUrl, provider };
             const newUser = new User(infor);
             newUser.save((err) => {
-              if (err) throw new Error("Can not login with your google account!");
+              if (err) {
+                console.log({ err });
+                throw new Error("Can not login with your google account!");
+              }
               return done(null, newUser);
             });
           }
@@ -149,7 +152,10 @@ passport.use(
             const infor = { facebookId, email, facebookLink, imgUrl, provider };
             const newUser = new User(infor);
             newUser.save((err) => {
-              if (err) throw new Error("Can not login with your facebook account!");
+              if (err) {
+                console.log({ err });
+                throw new Error("Can not login with your facebook account!");
+              }
               return done(null, newUser);
             });
           }
