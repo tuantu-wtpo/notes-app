@@ -18,7 +18,7 @@ router.get("/facebook", passport.authenticate("facebook_login", { scope: ["publi
 router.get(
   "/callback/facebook",
   (req, res, next) => {
-    handleLoginSocial(req, res, next, "facebook_login", { scope: ["public_profile", "user_link", "email"] });
+    handleLoginSocial(req, res, next, "facebook_login");
   },
   loginController.showCreateUsername,
   generateToken

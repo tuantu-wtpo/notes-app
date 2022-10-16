@@ -30,7 +30,10 @@ module.exports = {
 
   handleLoginSocial(req, res, next, social) {
     passport.authenticate(social, (err, user) => {
-      if (err) return res.json({ error: err.message, redirectBack: "/user" });
+      if (err) {
+        console.log({ err });
+        return res.json({ error: err.message, redirectBack: "/user" });
+      }
       req.user = user;
       return next();
     })(req, res, next);
