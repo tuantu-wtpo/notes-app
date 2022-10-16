@@ -38,16 +38,9 @@ class Helper {
   }
 
   linkSocial(user, type) {
-    if (type !== "facebook")
-      return `<div href="" onclick="alert('Unfinished features!')">
-                                            <i class="fab fa-${type} fa-lg user-social"></i>
-                                        </div>`;
-    const facebookLink = user.facebookLink;
-    return facebookLink
-      ? `<a href="${facebookLink}" target="blank"><i class="fab fa-facebook-f fa-lg user-social"></i></a>`
-      : `<a href="/link/facebook" onclick="return confirm('You have not linked ${type} account. Link now!')">
-                <i class="fab fa-facebook-f fa-lg user-social"></i>
-            </a>`;
+    return `<div href="" onclick="alert('Unfinished features!')">
+                <i class="fab fa-${type} fa-lg user-social"></i>
+            </div>`;
   }
 
   renderForgotPassword(name, token) {
