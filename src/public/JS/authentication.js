@@ -35,9 +35,9 @@ btnSubmit.onclick = async (e) => {
     const result = res.data;
     const key = Object.keys(result)[0];
     const message = result[key];
+    const urlRedirect = result.url || res.request.responseURL;
     animatePart.style.display = "none";
-    if (key === "error") return showNotify(key, message);
-    window.location.replace(res.request.responseURL);
+    return showNotify(key, message, urlRedirect);
   }
 };
 

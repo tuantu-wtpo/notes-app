@@ -9,11 +9,6 @@ class LoginController {
     return res.render("partials/login");
   }
 
-  // POST /login
-  login(req, res, next) {
-    return next();
-  }
-
   // GET /create-username
   showCreateUsername(req, res, next) {
     const user = req.user;

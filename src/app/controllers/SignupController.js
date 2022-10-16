@@ -7,12 +7,7 @@ class SignupController {
       const message = errors[key][0];
       return res.json({ error: message });
     }
-    return res.render('partials/signup');
-  }
-
-  // POST /signup
-  signup(req, res, next) {
-    return next();
+    return res.render("partials/signup");
   }
 }
 

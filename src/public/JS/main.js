@@ -1,30 +1,30 @@
 const html = document.documentElement;
-const appBg = $('.app-bg');
-const animatePart = $('.load-animate');
-const btnToggleModeOn = $('.toggle-mode-on');
-const btnToggleModeOff = $('.toggle-mode-off');
+const appBg = $(".app-bg");
+const animatePart = $(".load-animate");
+const btnToggleModeOn = $(".toggle-mode-on");
+const btnToggleModeOff = $(".toggle-mode-off");
 const numberBgImage = 18;
-let isDartMode = localStorage.getItem('IS_DART_MODE') === 'true';
-let data_them = isDartMode ? 'dark' : 'light';
+let isDartMode = localStorage.getItem("IS_DART_MODE") === "true";
+let data_them = isDartMode ? "dark" : "light";
 
-const bgFilter = document.createElement('div');
-bgFilter.classList.add('bg-filter');
+const bgFilter = document.createElement("div");
+bgFilter.classList.add("bg-filter");
 appBg.prepend(bgFilter);
 
-html.setAttribute('data-theme', data_them);
-btnToggleModeOn.style.display = isDartMode ? 'block' : 'none';
-btnToggleModeOff.style.display = isDartMode ? 'none' : 'block';
-bgFilter.style.display = isDartMode ? 'block' : 'none';
+html.setAttribute("data-theme", data_them);
+btnToggleModeOn.style.display = isDartMode ? "block" : "none";
+btnToggleModeOff.style.display = isDartMode ? "none" : "block";
+bgFilter.style.display = isDartMode ? "block" : "none";
 
 btnToggleModeOn.onclick = (e) => {
-  localStorage.setItem('IS_DART_MODE', false);
-  html.setAttribute('data-theme', 'light');
+  localStorage.setItem("IS_DART_MODE", false);
+  html.setAttribute("data-theme", "light");
   handleDisplay([btnToggleModeOff], [e.target, bgFilter]);
 };
 
 btnToggleModeOff.onclick = (e) => {
-  localStorage.setItem('IS_DART_MODE', true);
-  html.setAttribute('data-theme', 'dark');
+  localStorage.setItem("IS_DART_MODE", true);
+  html.setAttribute("data-theme", "dark");
   handleDisplay([btnToggleModeOn, bgFilter], [e.target]);
 };
 
@@ -66,7 +66,7 @@ function setBgImage(number = 1, urlArr = []) {
     if (w <= 575) {
       backgroundImgString = `${urlArr[radom]}`;
     } else {
-      backgroundImgString = `${imgArr.join(',')}`;
+      backgroundImgString = `${imgArr.join(",")}`;
     }
     appBg.style.backgroundImage = backgroundImgString;
   }
@@ -96,7 +96,7 @@ function setBgSize(number = 1) {
     arrOfBgSize.push(random);
   }
   const bgSize = arrOfBgSize.map((size) => `${size}%`);
-  appBg.style.backgroundSize = w > 575 ? bgSize.join(',') : `${random * 2}%`;
+  appBg.style.backgroundSize = w > 575 ? bgSize.join(",") : `${random * 2}%`;
 }
 
 // Create function to define backgroundPosition
@@ -122,18 +122,20 @@ function setBgPosition(number = 1) {
     return `${x}% ${arrOfBgPosY[i]}%`;
   });
 
-  appBg.style.backgroundPosition = w > 575 ? bgPos.join(',') : `${randomY}% ${randomY}%`;
+  appBg.style.backgroundPosition = w > 575 ? bgPos.join(",") : `${randomY}% ${randomY}%`;
 }
 
 // Function show notify in all app
-function showNotify(state, message, url) {
-  const main = $('.show-notify');
+function showNotify(key, message, url) {
+  const main = $(".show-notify");
+  const states = { success: "success", error: "error" };
+  const state = states[key];
   const icons = {
-    success: 'fa-check-circle',
-    error: 'fa-exclamation-circle',
+    success: "fa-check-circle",
+    error: "fa-exclamation-circle",
   };
-  if (main) {
-    const showNotiElement = document.createElement('div');
+  if (state) {
+    const showNotiElement = document.createElement("div");
     showNotiElement.classList.add(`show-notify__container`, `notify-${state}`);
     showNotiElement.innerHTML = `
             <div class="show-notify__icon">
@@ -152,21 +154,21 @@ function showNotify(state, message, url) {
 
     const autoRemoveShowNotify = setTimeout(() => {
       main.removeChild(showNotiElement);
-      if (state === 'success') {
+      if (state !== "error") {
         return url ? window.location.replace(url) : window.location.reload();
       }
     }, 4000);
 
     showNotiElement.onclick = (e) => {
-      if (e.target.closest('.show-notify__close')) {
+      if (e.target.closest(".show-notify__close")) {
         main.removeChild(showNotiElement);
         clearTimeout(autoRemoveShowNotify);
-        if (state === 'success') {
+        if (state !== "error") {
           return url ? window.location.replace(url) : window.location.reload();
         }
       }
     };
-  }
+  } else return url ? window.location.replace(url) : window.location.reload();
 
   return state;
 }
@@ -175,31 +177,31 @@ function showNotify(state, message, url) {
 let validator = {
   required(type, value) {
     const message = value ? undefined : `${type[0].toUpperCase() + type.slice(1)} can't be a space!`;
-    return message ? showNotify('error', message) : null;
+    return message ? showNotify("error", message) : null;
   },
 
   isEmail(value) {
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const message = regex.test(value) ? undefined : 'Email is invalid!';
-    return message ? showNotify('error', message) : null;
+    const message = regex.test(value) ? undefined : "Email is invalid!";
+    return message ? showNotify("error", message) : null;
   },
 
   isPhone(value) {
     const regex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
-    const message = regex.test(value) ? undefined : 'Phone is not a number!';
-    return message ? showNotify('error', message) : null;
+    const message = regex.test(value) ? undefined : "Phone is not a number!";
+    return message ? showNotify("error", message) : null;
   },
 
   checkPass(value) {
     const isLength = value.trim().length < 6;
-    const message = isLength ? 'Password must be at least 6 characters!' : undefined;
-    return message ? showNotify('error', message) : null;
+    const message = isLength ? "Password must be at least 6 characters!" : undefined;
+    return message ? showNotify("error", message) : null;
   },
 
   confirmPass(pass, confirmPass) {
     const isPass = pass === confirmPass;
-    const message = isPass ? undefined : 'Confirm password do not match!';
-    return message ? showNotify('error', message) : null;
+    const message = isPass ? undefined : "Confirm password do not match!";
+    return message ? showNotify("error", message) : null;
   },
 };
 
@@ -207,19 +209,19 @@ function checkValidate(type, value, confirmValue) {
   let err = null;
 
   switch (type) {
-    case 'email':
+    case "email":
       err = validator.isEmail(value);
       break;
-    case 'phone':
+    case "phone":
       err = validator.isPhone(value);
       break;
-    case 'password':
+    case "password":
       err = validator.checkPass(value);
       break;
-    case 'newPass':
+    case "newPass":
       err = validator.checkPass(value);
       break;
-    case 'confirmNewPass':
+    case "confirmNewPass":
       err = validator.confirmPass(value, confirmValue);
       break;
     default:
@@ -230,9 +232,9 @@ function checkValidate(type, value, confirmValue) {
 
 function handleDisplay(el1, el2) {
   if (el1) {
-    el1.forEach((el) => (el.style.display = 'block'));
+    el1.forEach((el) => (el.style.display = "block"));
   }
   if (el2) {
-    el2.forEach((el) => (el.style.display = 'none'));
+    el2.forEach((el) => (el.style.display = "none"));
   }
 }

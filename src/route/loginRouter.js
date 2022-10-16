@@ -25,11 +25,6 @@ router.get(
 );
 router.post("/create-username", loginController.createUsername, generateToken);
 router.get("/", loginController.show);
-router.post(
-  "/",
-  loginController.login,
-  passport.authenticate("local_login", { failureRedirect: "/login" }),
-  generateToken
-);
+router.post("/", passport.authenticate("local_login", { failureRedirect: "/login" }), generateToken);
 
 module.exports = router;
