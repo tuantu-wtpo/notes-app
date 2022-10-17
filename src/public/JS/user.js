@@ -163,11 +163,7 @@ btnConfirmChangePass.onclick = async (e) => {
     showNotify(key, message, "Not redirect");
     if (key === "success") {
       btnChangePass.innerText = "Change password";
-<<<<<<< HEAD
       formChangePass.querySelector('input[name="oldPass"]').classList.add("local");
-=======
-      formChangePass.querySelector('input[name="oldPass"]').classList.add = "local";
->>>>>>> 82c09e0b3ee331f17783bf91a371056d2368bf28
       formChangePass.querySelector('input[name="oldPass"]').value = "";
       formChangePass.querySelector('input[name="newPass"]').value = "";
       formChangePass.querySelector('input[name="confirmNewPass"]').value = "";
