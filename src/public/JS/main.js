@@ -41,17 +41,19 @@ async function renderBackground() {
     return `url(${url})`;
   });
   bgInterval = setInterval(() => {
-    setBgSize(numberBgImage);
-    setBgPosition(numberBgImage);
-    setBgImage(numberBgImage, urlArr);
+    if (window.innerWidth < 575) {
+      appBg.style.backgroundImage = "none";
+    } else {
+      setBgSize(numberBgImage);
+      setBgPosition(numberBgImage);
+      setBgImage(numberBgImage, urlArr);
+    }
   }, 5000);
 }
 
 // Create function to set image background
 function setBgImage(number = 1, urlArr = []) {
   const urlNumber = urlArr.length;
-  var w = window.innerWidth;
-  let backgroundImgString;
   if (urlNumber) {
     const imgArr = [];
     const radomArr = [];
@@ -63,11 +65,7 @@ function setBgImage(number = 1, urlArr = []) {
       radomArr.push(radom);
       imgArr.push(urlArr[radom]);
     }
-    if (w <= 575) {
-      backgroundImgString = `${urlArr[radom]}`;
-    } else {
-      backgroundImgString = `${imgArr.join(",")}`;
-    }
+    const backgroundImgString = `${imgArr.join(",")}`;
     appBg.style.backgroundImage = backgroundImgString;
   }
 }
@@ -96,12 +94,11 @@ function setBgSize(number = 1) {
     arrOfBgSize.push(random);
   }
   const bgSize = arrOfBgSize.map((size) => `${size}%`);
-  appBg.style.backgroundSize = w > 575 ? bgSize.join(",") : `${random * 2}%`;
+  appBg.style.backgroundSize = bgSize.join(",");
 }
 
 // Create function to define backgroundPosition
 function setBgPosition(number = 1) {
-  var w = window.innerWidth;
   const arrOfBgPosX = [];
   const arrOfBgPosY = [];
   let randomX;
@@ -122,7 +119,7 @@ function setBgPosition(number = 1) {
     return `${x}% ${arrOfBgPosY[i]}%`;
   });
 
-  appBg.style.backgroundPosition = w > 575 ? bgPos.join(",") : `${randomY}% ${randomY}%`;
+  appBg.style.backgroundPosition = bgPos.join(",");
 }
 
 // Function show notify in all app
@@ -155,6 +152,7 @@ function showNotify(key, message, url) {
     const autoRemoveShowNotify = setTimeout(() => {
       main.removeChild(showNotiElement);
       if (state !== "error") {
+        if (url === "Not redirect") return null;
         return url ? window.location.replace(url) : window.location.reload();
       }
     }, 4000);
@@ -164,6 +162,7 @@ function showNotify(key, message, url) {
         main.removeChild(showNotiElement);
         clearTimeout(autoRemoveShowNotify);
         if (state !== "error") {
+          if (url === "Not redirect") return null;
           return url ? window.location.replace(url) : window.location.reload();
         }
       }

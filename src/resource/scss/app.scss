@@ -1,11 +1,11 @@
-@import 'variables';
-@import 'background';
-@import 'home';
-@import 'authenticate';
-@import 'user';
-@import 'verify-code';
-@import 'notes';
-@import 'loadingAnimate';
+@import "variables";
+@import "background";
+@import "home";
+@import "authenticate";
+@import "user";
+@import "verify-code";
+@import "notes";
+@import "loadingAnimate";
 
 .show-notify {
   position: fixed;
@@ -108,7 +108,7 @@
   }
 
   .app-bg {
-    background-repeat: repeat;
+    background-image: none;
   }
 
   .home__header {

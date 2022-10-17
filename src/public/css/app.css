@@ -415,7 +415,7 @@ html[data-theme="light"] {
   left: 12px; }
 
 .avatar-owner::before {
-  content: '';
+  content: "";
   width: var(--avatar-owner-width);
   height: var(--avatar-owner-width);
   position: absolute;
@@ -424,7 +424,7 @@ html[data-theme="light"] {
   border-radius: 50%; }
 
 .avatar-owner::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 8px;
   border-radius: 50%;
@@ -798,7 +798,7 @@ html[data-theme="light"] {
     min-width: 300px;
     right: 12px; }
   .app-bg {
-    background-repeat: repeat; }
+    background-image: none; }
   .home__header {
     padding-top: 25%; }
   .home__header span {

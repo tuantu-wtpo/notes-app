@@ -22,7 +22,7 @@ const inputUpdatePasswords = $$(".change-password__input");
 const iconPart = $$(".icon-state");
 const showPassIcons = $$(".icon-show-pass");
 const hidePassIcons = $$(".icon-hide-pass");
-const avatarSrcOriginal = avatarImg.src;
+let avatarSrcOriginal = avatarImg.src;
 let imgAvatarString;
 
 avatarImg.onclick = (e) => {
@@ -66,7 +66,11 @@ btnConfirmChangeAvatar.onclick = async () => {
   const url = "/user/image-avatar";
   const res = await callServer(url, "POST", data);
   const { key, message } = res;
-  showNotify(key, message);
+  showNotify(key, message, "Not redirect");
+  if (key === "success") {
+    avatarSrcOriginal = imgAvatarString;
+  }
+  avatarModifyPart.style.display = "none";
 };
 
 btnModifyInfors.forEach((btn, i) => {
@@ -89,11 +93,14 @@ btnConfirmModifys.forEach((btn, i) => {
       const data = { [type]: value };
       const res = await callServer(url, "PATCH", data);
       const { key, message, email } = res;
-      let urlRedirect;
+      if (key === "error") return showNotify(key, message);
       if (type === "email") {
-        urlRedirect = `${url}/verify-code?e=${email}`;
+        const urlRedirect = `${url}/verify-code?e=${email}`;
+        showNotify(key, message, urlRedirect);
+      } else {
+        showNotify(key, message, "Not redirect");
+        inforTitles[i].innerText = value;
       }
-      return showNotify(key, message, urlRedirect);
     }
   };
 });
@@ -153,7 +160,12 @@ btnConfirmChangePass.onclick = async (e) => {
     const data = { oldPass, newPass };
     const result = await callServer(url, "PATCH", data);
     const { key, message } = result;
-    showNotify(key, message);
+    showNotify(key, message, "Not redirect");
+    if (key === "success") {
+      formChangePass.querySelector('input[name="oldPass"]').value = "";
+      formChangePass.querySelector('input[name="newPass"]').value = "";
+      formChangePass.querySelector('input[name="confirmNewPass"]').value = "";
+    }
   }
 };
 

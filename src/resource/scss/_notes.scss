@@ -12,7 +12,7 @@
 }
 
 .avatar-owner::before {
-  content: '';
+  content: "";
   width: var(--avatar-owner-width);
   height: var(--avatar-owner-width);
   position: absolute;
@@ -22,7 +22,7 @@
 }
 
 .avatar-owner::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 8px;
   border-radius: 50%;
