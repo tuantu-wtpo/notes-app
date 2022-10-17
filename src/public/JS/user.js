@@ -162,6 +162,7 @@ btnConfirmChangePass.onclick = async (e) => {
     const { key, message } = result;
     showNotify(key, message, "Not redirect");
     if (key === "success") {
+      btnChangePass.innerText = "Change password";
       formChangePass.querySelector('input[name="oldPass"]').value = "";
       formChangePass.querySelector('input[name="newPass"]').value = "";
       formChangePass.querySelector('input[name="confirmNewPass"]').value = "";
